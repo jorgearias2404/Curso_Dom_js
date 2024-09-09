@@ -79,4 +79,60 @@ console.log(grandGrandParent);
 //const Clon = Elemento.cloneNode(true) copia el elemento
 //elemento.replaceWidt(elementoParaReemplazar )
 
-//EVENTOS
+//EVENTOS SUPER IMPORTANTE
+const container = document.querySelector(".conatiner")
+const button =document.querySelector("button")
+
+container.addEventListener("mouseover",() =>{
+    container.style.backgroundColor = "blue"
+})
+
+container.addEventListener("mouseout",()=>{
+    container.style.backgroundColor = "red"
+})
+
+// button.addEventListener("click",() =>{
+//     alert("button clicked!")
+// })
+
+const buttonClickCallBack = () =>{
+    alert("button clicked!")
+}
+button.addEventListener("click",buttonClickCallBack)
+
+setTimeout(() =>{
+    button.removeEventListener("click",buttonClickCallBack)
+},2000)
+
+//OBJETO EVENTO
+
+const button2 =document.querySelector("button")
+const ButtonClicked = (event) => {
+    console.log(event.target.id)//recibo un evento y navego por el target que es un botm y luego accedo a su id
+} 
+button2.addEventListener("click",ButtonClicked)
+
+//MANEJO DE ENTRADAS
+const form = document.getElementById("myForm")
+form.addEventListener("submit",(event)=>{
+    event.preventDefault()//evita el refrescamiento de la pagina 
+    const name = form.elements["name"]
+    console.log(name);
+    
+})
+
+//DELEGACION DE EVENTOS  
+//le agregamos a los li un comportamiento toggle
+const Lisrtitems = document.querySelectorAll("li")
+
+Lisrtitems.forEach((item) => {
+ item.addEventListener("cliclk",(event) =>{
+
+    event.target.classList.toggle("highlight")
+ })
+})
+//hace exactamente lo mismo de arriba pero tomando como elemento al padre
+const list = document.querySelector("ul")
+list.addEventListener("click",(event) =>{
+    event.target.closest("li").classList.toggle("highlight")
+})
